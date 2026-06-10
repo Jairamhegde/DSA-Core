@@ -1,0 +1,4 @@
+Program for matrix multiplication
+find the sum of rows and columns of the matrix
+program to reverse the array
+seperate even and odd numbers in an array
