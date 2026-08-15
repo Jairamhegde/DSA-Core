@@ -14,6 +14,8 @@ class Solution(object):
             return False
         
         answer = -1
+        if m*k > len(bloomDay):
+            return -1
         low ,high = min(bloomDay),max(bloomDay)
         while low <= high:
             mid = (low+high)//2
