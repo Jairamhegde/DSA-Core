@@ -14,7 +14,7 @@ class Solution(object):
             return False
         
         answer = -1
-        low ,high = 1,max(bloomDay)
+        low ,high = min(bloomDay),max(bloomDay)
         while low <= high:
             mid = (low+high)//2
             res = check(bloomDay,m,k,mid)
