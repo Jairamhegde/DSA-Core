@@ -18,7 +18,6 @@ class Solution(object):
         while low <= high:
             mid = (low+high)//2
             res = check(bloomDay,m,k,mid)
-            print(res)
             if res:
                 answer = mid
                 high = mid-1
