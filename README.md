@@ -19,4 +19,8 @@ Core DSA arranged topic wise
 | [1011-capacity-to-ship-packages-within-d-days](https://github.com/Jairamhegde/DSA-Core/tree/master/1011-capacity-to-ship-packages-within-d-days) |
 | [1283-find-the-smallest-divisor-given-a-threshold](https://github.com/Jairamhegde/DSA-Core/tree/master/1283-find-the-smallest-divisor-given-a-threshold) |
 | [1482-minimum-number-of-days-to-make-m-bouquets](https://github.com/Jairamhegde/DSA-Core/tree/master/1482-minimum-number-of-days-to-make-m-bouquets) |
+## Database
+|  |
+| ------- |
+| [0181-employees-earning-more-than-their-managers](https://github.com/Jairamhegde/DSA-Core/tree/master/0181-employees-earning-more-than-their-managers) |
 <!---LeetCode Topics End-->
