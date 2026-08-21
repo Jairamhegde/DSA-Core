@@ -6,18 +6,20 @@
 #         self.right = right
 class Solution(object):
     def diameterOfBinaryTree(self, root):
-        def helper(root,diameter):
+        self.diameter = 0
+        def helper(root):
+            
             if root is None:
                 return 0
-            left = helper(root.left,diameter)
-            right = helper(root.right,diameter)
+            left = helper(root.left)
+            right = helper(root.right)
             total = 1 + left + right
-            diameter[-1] = max(diameter[-1],total)
+            self.diameter = max(self.diameter,total)
             return  1 +max(left,right)
         
-        diameter = [0]
-        helper(root,diameter)
-        return diameter[0] - 1
+        
+        helper(root)
+        return self.diameter -1
         
 
 # Synced seamlessly with LeetHub Pro
