@@ -1,25 +1,16 @@
 class Solution(object):
     def coinChange(self, coins, amount):
-        memo = {}
-        def solve(index,ammount):
-            if (index,ammount) in memo:
-                return memo[(index,ammount)]
-            if ammount == 0:
-                return 0
-            if index == len(coins):
-                return float('inf')
+        dp = [float('inf')]*(amount + 1)
+        dp[0] = 0
 
-            take = float('inf')
-            if ammount >= coins[index]:
-                take = 1+solve(index,ammount - coins[index])
-
-            skip = solve(index+1,ammount)
-            min_val = min(skip,take)
-            if (index,ammount) not in memo:
-                memo[(index,ammount)] = min_val
-            return min(skip,take)
-        res = solve(0,amount)
-        return res if res != float('inf') else -1     
+        for i in range(1,amount+1):
+            for k in coins:
+                if k <= i:
+                    dp[i] = min(dp[i],
+                    1 + dp[i - k]
+                    ) 
+        val = dp[amount]
+        return val if val != float('inf') else -1
 
 # Synced seamlessly with LeetHub Pro
 # Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
