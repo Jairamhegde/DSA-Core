@@ -1,17 +1,15 @@
 class Solution(object):
     def twoSum(self, numbers, target):
-        mp ={}
-        for i in range(len(numbers)):
-            needed = numbers[i] - target
-            need2 = needed*-1
-            if needed in mp:
-                if needed + numbers[i] == target:
-                    return [mp[needed]+1,i+1]
-            if need2 in mp:
-                if need2 + numbers[i] == target:
-                    return [mp[need2]+1,i+1]
-            if numbers[i] not in mp:
-                mp[numbers[i]] = i
+        n = len(numbers)
+        left,right = 0,n-1
+        while left <= right:
+            current = numbers[left] + numbers[right]
+            if current == target:
+                return [left+1,right+1]
+            if current > target:
+                right -= 1
+            elif current < target:
+                left += 1
         return []
 
              
