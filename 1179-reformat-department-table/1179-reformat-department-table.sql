@@ -1,16 +1,16 @@
 select id,
-sum(case when month = 'Jan' then revenue end)as Jan_Revenue,
-sum(case when month = 'Feb'then revenue end)as Feb_Revenue,
-sum(case when month = 'Mar'then revenue end)as Mar_Revenue,
-sum(case when month = 'Apr'then revenue end)as Apr_Revenue,
-sum(case when month = 'May'then revenue end)as May_Revenue,
-sum(case when month = 'Jun'then revenue end)as Jun_Revenue,
-sum(case when month = 'Jul'then revenue end)as Jul_Revenue,
-sum(case when month = 'Aug'then revenue end)as Aug_Revenue,
-sum(case when month = 'Sep'then revenue end)as Sep_Revenue,
-sum(case when month = 'Oct'then revenue end)as Oct_Revenue,
-sum(case when month = 'Nov'then revenue end)as Nov_Revenue,
-sum(case when month = 'Dec'then revenue end)as Dec_Revenue
+sum(if(month='Jan',revenue,Null)) as Jan_Revenue,
+sum(if(month='Feb',revenue,Null)) as Feb_Revenue,
+sum(if(month='Mar',revenue,Null)) as Mar_Revenue,
+sum(if(month='Apr',revenue,Null)) as Apr_Revenue,
+sum(if(month='May',revenue,Null)) as May_Revenue,
+sum(if(month='Jun',revenue,Null)) as Jun_Revenue,
+sum(if(month='Jul',revenue,Null)) as Jul_Revenue,
+sum(if(month='Aug',revenue,Null)) as Aug_Revenue,
+sum(if(month='Sep',revenue,Null)) as Sep_Revenue,
+sum(if(month='Oct',revenue,Null)) as Oct_Revenue,
+sum(if(month='Nov',revenue,Null)) as Nov_Revenue,
+sum(if(month='Dec',revenue,Null)) as Dec_Revenue
 from Department
 group by id;
 
