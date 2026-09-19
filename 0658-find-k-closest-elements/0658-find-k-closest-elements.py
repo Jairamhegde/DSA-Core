@@ -1,14 +1,17 @@
 class Solution(object):
     def findClosestElements(self, arr, k, x):
-        left = 0
         n = len(arr)
-        for i in range(n):
-            while (i - left + 1) > k:
-                left += 1
-            if (i - left + 1) == k:
-                if i == n-1 or  (x-arr[left]) <= (arr[i+1]-x):
-                    return arr[left:i+1]
-        return []
+        l,r = 0,n-k
+        while l < r:
+            mid = (l+r)//2
+            if x-arr[mid] > arr[mid+k] - x:
+                l = mid+1
+            else:
+                r = mid
+        return arr[l:l+k]
+                
+            
+        
             
         
 
