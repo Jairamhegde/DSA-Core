@@ -1,25 +1,25 @@
 class Solution(object):
     def numDecodings(self, s):
-        memo = {}
         n = len(s)
-        def solve(s,index):
-            if index in memo:
-                return memo[index]
-            if index >= n:
-                return 1
-            if s[index] == "0":
-                return 0
-            
-            take1 = solve(s,index+1)
-            take2 = 0
-            if index < n-1:
-                val =  int(s[index:index+2])
-                if val >= 10 and val <= 26:
-                    take2 = solve(s,index +2)
-            total = take1 + take2
-            memo[index] = total
-            return total
-        return solve(s,0)
+        dp=[0]*(n+1)
+        dp[0] = 1
+        if not dp:
+            return 0
+        if s[0] != "0":
+            dp[1] = 1
+       
+        for i in range(2,n+1):
+            sumation = 0
+            first = int(s[i-1])
+            total = int(s[i-2]) * 10 + first
+            if first != 0:
+                sumation += dp[i-1]
+            if total >= 10 and total <= 26:
+                sumation += dp[i-2]
+            dp[i] = sumation
+        return dp[-1]
+
+       
 
         
         
