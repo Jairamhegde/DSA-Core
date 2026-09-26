@@ -1,21 +1,16 @@
 class Solution(object):
     def mostPoints(self, questions):
         n = len(questions)
-        memo = {}
-        def solve(index):
+        dp = [0]* n
 
-            if index >= n:
-                return 0
-            if index in memo:
-                return memo[index]
-            take = questions[index][0]+solve(index+questions[index][1]+1)
+        dp[-1] = questions[-1][0]
 
-            skip = solve(index+1)
-            maxval = max(take,skip)
-            memo[index] = maxval
-            return maxval
-
-        return solve(0)
+        for i in range(n-2,-1,-1):
+            next_question = i + questions[i][1]+1
+            dp[i] = max(
+                dp[i+1], 
+                questions[i][0]+ (dp[next_question] if next_question < n else 0) )     
+        return dp[0]
         
 
 # Synced seamlessly with LeetHub Pro
