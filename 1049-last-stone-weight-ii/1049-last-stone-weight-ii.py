@@ -2,29 +2,17 @@ class Solution(object):
     def lastStoneWeightII(self, stones):
         total_sum = sum(stones)
         required = total_sum//2
-        
         n = len(stones)
-        memo = {}
-        self.maxsum = float('-inf')
-        def solve(index,cursum):
-            t = (index,cursum)
-            if t in memo:
-                return memo[t]
-            if index == n:
-                self.maxsum = max(self.maxsum,cursum)if cursum <= required else self.maxsum
-                return 0
-            take = 0
-            current = stones[index]
-            if current + cursum <= required:
-                take = current + solve(index+1,cursum + current)
-            skip = solve(index+1,cursum)
+        dp = [[0]*(required+1) for _ in range(n+1)]
 
-            memo[t] = max(skip ,take)
-            return max(skip ,take)
-           
-
-        solve(0,0)
-        return total_sum - 2*self.maxsum
+        for i in range(1,n+1):
+            for j in range(1,required+1):
+                stone = stones[i-1]
+                if stone <= j:
+                    dp[i][j] = max(stone + dp[i-1][j-stone],dp[i-1][j])
+                else:
+                    dp[i][j] = dp[i-1][j]
+        return total_sum - (2*dp[n][required])
 
        
 
