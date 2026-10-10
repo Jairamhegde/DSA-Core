@@ -1,25 +1,21 @@
 class Solution(object):
     def change(self, amount, coins):
         n = len(coins)
-        memo = {}
-        def solve(index,current):
-            t = (index,current)
-            if t in memo:
-                return memo[t]
-            if index >= n:
-                if current == amount:
-                    return 1
-                return 0
-            skip = solve(index+1,current)
-            take = 0 
-            cur_amt = coins[index]
-            if cur_amt + current <= amount:
-                take = solve(index,current+ cur_amt)
-            total = take+skip
-            memo[t] = total
-            return total
+        dp = [[0]*(amount+1) for _ in range(n+1)]
+        for i in range(n+1):
+            dp[i][0] = 1
+        for i in range(1,n+1):
+            coin = coins[i-1]
+            for j in range(1,amount+1):
+                skip = dp[i-1][j]
 
-        return solve(0,0)
+                take = 0
+                if coin <= j:
+                    take = dp[i][j-coin]
+
+                dp[i][j] = skip+take  
+
+        return dp[n][amount]              
 
         
 
