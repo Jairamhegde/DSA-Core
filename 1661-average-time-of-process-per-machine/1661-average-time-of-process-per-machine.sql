@@ -1,14 +1,10 @@
-with each_proces_time as (
-    select machine_id,process_id, (max(timestamp) - min(timestamp)) as time_taken
-    from Activity
-    group by machine_id,process_id
-)
+select a1.machine_id,round(avg(a2.timestamp-a1.timestamp),3)as processing_time 
+from Activity a1
+join Activity a2 on a1.machine_id  = a2.machine_id and
+a1.process_id = a2.process_id 
+where a1.activity_type ='start' and a2.activity_type = 'end'
+group by a1.machine_id ;
 
--- select * from each_proces_time;
-select machine_id,
-round(sum(time_taken)/count(*),3) as processing_time
-from each_proces_time
-group by machine_id;
 
 -- Synced seamlessly with LeetHub Pro
 -- Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
